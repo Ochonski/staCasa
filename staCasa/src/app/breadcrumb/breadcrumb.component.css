@@ -6,7 +6,7 @@
   background-size: cover; /* Ajusta a imagem para cobrir toda a área */
   background-position: center; /* Centraliza a imagem */
   background-repeat: no-repeat; /* Impede a repetição da imagem */
-  border-radius: 50px;
+  border-radius: 05px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
 }
 

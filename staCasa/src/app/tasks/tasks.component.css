@@ -1,14 +1,34 @@
 /* Estilos para o Breadcrumb */
 .breadcrumb-container {
-  background-image: url('/assets/img/header.jpg');
-  background-size: cover;
-  background-position: center;
+  background-image: url('/assets/img/header.jpg'); /* Caminho da sua imagem */
+  background-size: cover; /* Garante que a imagem cubra toda a área */
+  background-position: center; /* Centraliza a imagem */
   background-repeat: no-repeat;
-  height: 300px;
+  width: 100%; /* Garante que o contêiner ocupe toda a largura */
+  height: 300px; /* Ajuste a altura da imagem conforme necessário */
   padding: 20px 0;
+  color: white; /* Garante a visibilidade do texto sobre o fundo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-/* Garante que cada item fique em uma linha separada */
+.store-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 130px; /* Faz com que ocupe toda a altura da tela */
+  background-color: white; /* Fundo branco */
+  text-align: center;
+}
+
+.store-title {
+  font-size: 50px; /* Ajuste o tamanho do título conforme necessário */
+  font-weight: bold;
+  color: #333; /* Cor do texto */
+}
+
 .container {
   width: 100%;
   padding: 10px;
@@ -97,13 +117,13 @@ textarea.input-field {
 
 .breadcrumb-item a {
   text-decoration: none;
-  color: #000;
+  color: #fff; /* Corrigido para o texto ficar branco */
   font-size: 18px;
   font-weight: bold;
 }
 
 .breadcrumb-item.active {
-  color: #000;
+  color: #fff; /* Corrigido para o texto ficar branco */
   font-size: 18px;
 }
 
@@ -181,6 +201,7 @@ textarea.input-field {
   flex-direction: column;
   margin-left: 20px;  /* mesma margem à esquerda que o campo de nova tarefa */
   margin-top: 10px;
+  margin-bottom: 20px; /* Ajuste a margem inferior para aumentar a distância dos botões */
 }
 
 .task-detail-label {
