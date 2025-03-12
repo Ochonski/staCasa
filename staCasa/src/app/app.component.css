@@ -1,9 +1,8 @@
-/* Aplicando um fundo cinza mais escuro em toda a página */
 :host {
     display: block;
-    background-color: #dcdcdc; /* Cor de fundo cinza escuro */
-    min-height: 100vh; /* Garante que o fundo ocupe toda a altura da tela */
-    padding: 0; /* Remove qualquer padding */
+    background-color: #dcdcdc;
+    min-height: 100vh;
+    padding: 0;
   }
   
   /* Estilos gerais para o Breadcrumb */
@@ -14,7 +13,7 @@
     background-repeat: no-repeat;
     height: 300px;
     padding: 20px 0;
-    background-color: rgba(0, 0, 0, 0.6); /* Fundo escuro com transparência para o breadcrumb */
+    background-color: rgba(0, 0, 0, 0.6);
   }
   
   .breadcrumb {
@@ -46,13 +45,12 @@
     font-size: 18px;
   }
   
-  /* Estilos para o Task Board */
   .task-board {
     display: flex;
     justify-content: space-between;
     gap: 20px;
     padding: 20px;
-    background-color: #f0f0f0; /* Fundo cinza claro para o board */
+    background-color: #f0f0f0;
   }
   
   .status-container {

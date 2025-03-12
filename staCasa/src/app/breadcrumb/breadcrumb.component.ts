@@ -12,7 +12,6 @@ export class BreadcrumbComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    // Adiciona o breadcrumb inicial
     this.breadcrumbs = [
       { label: 'Home', link: '/home' },
       { label: 'Tasks', link: '/tasks' }

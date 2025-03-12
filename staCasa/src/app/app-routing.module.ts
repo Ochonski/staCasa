@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TasksComponent } from './tasks/tasks.component'; // Importe o componente
+import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
-  { path: '', component: TasksComponent },  // Página inicial
-  { path: 'tasks', component: TasksComponent },  // Rota para a página de tarefas
+  { path: '', component: TasksComponent },
+  { path: 'tasks', component: TasksComponent },
 ];
 
 @NgModule({

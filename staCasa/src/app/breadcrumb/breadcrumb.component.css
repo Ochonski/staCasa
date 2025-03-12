@@ -1,13 +1,12 @@
-/* breadcrumb.component.css */
 .breadcrumb-container {
   padding: 10px 20px;
-  background-color: #f8f9fa; /* Cor de fundo clara */
+  background-color: #f8f9fa;
   background-image: url('/assets/img/header.jpg');
-  background-size: cover; /* Ajusta a imagem para cobrir toda a área */
-  background-position: center; /* Centraliza a imagem */
-  background-repeat: no-repeat; /* Impede a repetição da imagem */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 05px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .breadcrumb {
@@ -20,24 +19,24 @@
 
 .breadcrumb li {
   font-size: 14px;
-  color: #6c757d; /* Cor do texto */
+  color: #6c757d;
   margin-right: 5px;
-  font-weight: bold; /* Deixa o texto em negrito */
+  font-weight: bold;
 }
 
 .breadcrumb li a {
-  color: #007bff; /* Cor do link */
-  text-decoration: none; /* Remove o sublinhado */
-  font-weight: bold; /* Deixa o link em negrito */
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
   transition: color 0.3s;
 }
 
 .breadcrumb li a:hover {
-  color: #0056b3; /* Cor do link ao passar o mouse */
+  color: #0056b3;
 }
 
 .breadcrumb li span {
-  color: #343a40; /* Cor do texto para o último item */
+  color: #343a40;
   font-weight: bold;
 }
 
