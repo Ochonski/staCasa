@@ -1,0 +1,110 @@
+/* tasks.component.css */
+
+/* Estilos para o Breadcrumb */
+.breadcrumb-container {
+  background-image: url('/assets/img/header.jpg');
+  background-size: cover; /* Pode ser 'cover', 'contain' ou valores fixos como '100% 200px' */
+  background-position: center;
+  background-repeat: no-repeat; /* Garante que a imagem não seja repetida */
+  height: 300px; /* Ajuste a altura da área do breadcrumb, altere conforme necessário */
+  padding: 20px 0; /* Ajuste o espaço vertical do breadcrumb */
+}
+
+.breadcrumb {
+  display: flex;
+  justify-content: center; /* Centraliza os itens */
+  gap: 10px; /* Espaço entre os itens */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  z-index: 1; /* Garante que o breadcrumb fique acima da imagem */
+}
+
+.breadcrumb-item {
+  font-size: 18px; /* Ajuste o tamanho do texto dos itens */
+  margin-right: 5px;
+  font-weight: bold; /* Deixa os itens em negrito */
+}
+
+.breadcrumb-item a {
+  text-decoration: none; /* Remove o sublinhado */
+  color: #000; /* Cor preta para o link */
+  font-size: 18px; /* Tamanho do link */
+  font-weight: bold; /* Deixa o link em negrito */
+}
+
+.breadcrumb-item.active {
+  color: #000; /* Cor preta para o item ativo */
+  font-size: 18px; /* Tamanho do item ativo */
+}
+
+/* Estilos para o Task Board */
+.task-board {
+  display: flex;
+  justify-content: space-between; /* Distribui os containers horizontalmente */
+  gap: 20px;
+  padding: 20px;
+}
+
+.status-container {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 20px;
+  width: 30%; /* Largura de cada container */
+  min-height: 400px; /* Altura mínima do container */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.status-container h2 {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.task {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: grab;
+  transition: background-color 0.3s;
+}
+
+.task:hover {
+  background-color: #f9f9f9;
+}
+
+.task[cdkDrag] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background-color: #e9ecef;
+  border-radius: 5px;
+}
+
+.task[cdkDrag]:active {
+  background-color: #d6d8db;
+}
+
+/* Quando o item estiver sendo arrastado */
+.task[cdkDrag].cdk-drag-preview {
+  opacity: 0.8;
+}
+
+.status-container[cdkDropList] {
+  border: 2px dashed #ccc;
+}
+
+/* Estilos adicionais para o container de status */
+.status-container[cdkDropList] {
+  background-color: #f9f9f9;
+  border: 2px dashed #ccc;
+  min-height: 400px;
+  padding: 15px;
+}

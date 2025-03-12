@@ -1,0 +1,32 @@
+<!-- tasks.component.html -->
+<div>
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Tasks</li>
+    </ol>
+  </nav>
+
+
+  <!-- Task Board -->
+  <div class="task-board">
+    <!-- Container: A Fazer -->
+    <div class="status-container" cdkDropList [cdkDropListData]="todoTasks" (cdkDropListDropped)="onTaskDropped($event)">
+      <h2>A Fazer</h2>
+      <div class="task" *ngFor="let task of todoTasks" cdkDrag>{{ task.title }}</div> <!-- Alterado para task.title -->
+    </div>
+
+    <!-- Container: Em Progresso -->
+    <div class="status-container" cdkDropList [cdkDropListData]="inProgressTasks" (cdkDropListDropped)="onTaskDropped($event)">
+      <h2>Em Progresso</h2>
+      <div class="task" *ngFor="let task of inProgressTasks" cdkDrag>{{ task.title }}</div> <!-- Alterado para task.title -->
+    </div>
+
+    <!-- Container: Concluído -->
+    <div class="status-container" cdkDropList [cdkDropListData]="doneTasks" (cdkDropListDropped)="onTaskDropped($event)">
+      <h2>Concluído</h2>
+      <div class="task" *ngFor="let task of doneTasks" cdkDrag>{{ task.title }}</div> <!-- Alterado para task.title -->
+    </div>
+  </div>
+</div>

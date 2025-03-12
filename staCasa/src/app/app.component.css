@@ -1,0 +1,113 @@
+/* Aplicando um fundo cinza mais escuro em toda a página */
+:host {
+    display: block;
+    background-color: #dcdcdc; /* Cor de fundo cinza escuro */
+    min-height: 100vh; /* Garante que o fundo ocupe toda a altura da tela */
+    padding: 0; /* Remove qualquer padding */
+  }
+  
+  /* Estilos gerais para o Breadcrumb */
+  .breadcrumb-container {
+    background-image: url('/assets/img/header.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 300px;
+    padding: 20px 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo escuro com transparência para o breadcrumb */
+  }
+  
+  .breadcrumb {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .breadcrumb-item {
+    font-size: 18px;
+    margin-right: 5px;
+    font-weight: bold;
+  }
+  
+  .breadcrumb-item a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .breadcrumb-item.active {
+    color: #fff;
+    font-size: 18px;
+  }
+  
+  /* Estilos para o Task Board */
+  .task-board {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f0f0f0; /* Fundo cinza claro para o board */
+  }
+  
+  .status-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 30%;
+    min-height: 400px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .status-container h2 {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .task {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: grab;
+    transition: background-color 0.3s;
+  }
+  
+  .task:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .task[cdkDrag] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+  }
+  
+  .task[cdkDrag]:active {
+    background-color: #d6d8db;
+  }
+  
+  .task[cdkDrag].cdk-drag-preview {
+    opacity: 0.8;
+  }
+  
+  .status-container[cdkDropList] {
+    border: 2px dashed #ccc;
+    background-color: #f9f9f9;
+    padding: 15px;
+    min-height: 400px;
+  }
+  
