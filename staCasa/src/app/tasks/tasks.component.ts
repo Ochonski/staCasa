@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; // Importe o Router para navegação
 
 @Component({
   selector: 'app-tasks',
@@ -7,41 +6,64 @@ import { Router } from '@angular/router'; // Importe o Router para navegação
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent {
+  // Listas de tarefas
+  todoTasks = [{ id: 1, title: 'Tarefa 1', detail: 'Detalhe 1' }];
+  inProgressTasks = [{ id: 2, title: 'Tarefa 2', detail: 'Detalhe 2' }];
+  doneTasks = [{ id: 3, title: 'Tarefa 3', detail: 'Detalhe 3' }];
   
-  
-  // Definindo as tarefas nos diferentes estados
-  todoTasks = [
-    { id: 1, title: 'Task 1', description: 'Descrição da tarefa 1' },
-    { id: 2, title: 'Task 2', description: 'Descrição da tarefa 2' },
-  ];
-  
-  inProgressTasks = [
-    { id: 3, title: 'Task 3', description: 'Descrição da tarefa 3' },
-  ];
-  
-  doneTasks = [
-    { id: 4, title: 'Task 4', description: 'Descrição da tarefa 4' },
-  ];
+  // Dados da tarefa em edição
+  newTaskTitle: string = '';
+  newTaskDetail: string = '';
+  expandedTaskId: number | null = null;
 
-  constructor(private router: Router) {}
+  // Controle do modo de edição
+  isEditMode: boolean = false;
+  taskBeingEdited: any = null;
 
-  // Método para navegar para a página de tarefas
-  navigateToTasks(): void {
-    this.router.navigate(['/tasks']); // Redireciona para a rota '/tasks'
+  // Função para expandir a exibição de detalhes de uma tarefa
+  toggleExpand(taskId: number) {
+    this.expandedTaskId = this.expandedTaskId === taskId ? null : taskId;
   }
 
-  // Método para lidar com o evento de arrastar e soltar
-  onTaskDropped(event: any): void {
-    // Lógica para mover as tarefas entre os status
-    const { previousContainer, currentContainer, item } = event;
+  // Função para editar uma tarefa
+  editTask(task: any) {
+    this.newTaskTitle = task.title;
+    this.newTaskDetail = task.detail;
+    this.isEditMode = true;
+    this.taskBeingEdited = task;
+  }
 
-    if (previousContainer !== currentContainer) {
-      // Remover a tarefa do container anterior
-      const previousIndex = previousContainer.data.findIndex((task: any) => task.id === item.data.id);
-      previousContainer.data.splice(previousIndex, 1);
-
-      // Adicionar a tarefa ao novo container
-      currentContainer.data.push(item.data);
+  // Função para adicionar ou salvar tarefa
+  addTask() {
+    if (this.isEditMode) {
+      // Atualiza a tarefa existente
+      this.taskBeingEdited.title = this.newTaskTitle;
+      this.taskBeingEdited.detail = this.newTaskDetail;
+      
+      // Limpa os campos após salvar
+      this.resetForm();
+    } else {
+      // Adiciona nova tarefa
+      const newTask = {
+        id: Date.now(),
+        title: this.newTaskTitle,
+        detail: this.newTaskDetail
+      };
+      this.todoTasks.push(newTask);
+      this.resetForm();
     }
+  }
+
+  // Função para resetar o formulário
+  resetForm() {
+    this.newTaskTitle = '';
+    this.newTaskDetail = '';
+    this.isEditMode = false;
+    this.taskBeingEdited = null;
+  }
+
+  // Função para mover tarefas entre listas
+  onTaskDropped(event: any) {
+    // Implemente a lógica para mover a tarefa entre as listas
   }
 }

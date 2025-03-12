@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TasksComponent } from './tasks.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
@@ -9,10 +10,11 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   ],
   imports: [
     CommonModule,
-    DragDropModule  // Importação do DragDropModule para permitir arrastar e soltar
+    DragDropModule, 
+    FormsModule 
   ],
   exports: [
-    TasksComponent  // Exportando para uso em outros módulos, se necessário
+    TasksComponent
   ]
 })
 export class TasksModule { }

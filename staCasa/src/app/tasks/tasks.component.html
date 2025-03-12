@@ -1,4 +1,3 @@
-<!-- tasks.component.html -->
 <div>
   <!-- Breadcrumb -->
   <nav aria-label="breadcrumb">
@@ -8,25 +7,81 @@
     </ol>
   </nav>
 
+  <!-- Formulário para adicionar ou editar task -->
+  <div class="task-input">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <input [(ngModel)]="newTaskTitle" class="input-field" type="text" placeholder="Nova tarefa..." />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <textarea [(ngModel)]="newTaskDetail" class="input-field" placeholder="Detalhes (max 100 caracteres)" maxlength="100"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button class="add-button custom-button" (click)="addTask()">{{ isEditMode ? 'Salvar Alterações' : 'Adicionar' }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!-- Task Board -->
-  <div class="task-board">
+  <!-- Grupo de drop lists -->
+  <div cdkDropListGroup class="task-board">
     <!-- Container: A Fazer -->
-    <div class="status-container" cdkDropList [cdkDropListData]="todoTasks" (cdkDropListDropped)="onTaskDropped($event)">
-      <h2>A Fazer</h2>
-      <div class="task" *ngFor="let task of todoTasks" cdkDrag>{{ task.title }}</div> <!-- Alterado para task.title -->
+    <div class="status-container" cdkDropList id="todoList"
+         [cdkDropListData]="todoTasks"
+         [cdkDropListConnectedTo]="['inProgressList', 'doneList']"
+         (cdkDropListDropped)="onTaskDropped($event)">
+      <h2>A Fazer ({{ todoTasks.length }}/5)</h2>
+      <div *ngFor="let task of todoTasks" class="task-container">
+        <div class="task" cdkDrag (click)="toggleExpand(task.id)">
+          {{ task.title }}
+        </div>
+        <div class="task-details" *ngIf="expandedTaskId === task.id">
+          <p>{{ task.detail }}</p>
+          <!-- Botão de Editar -->
+          <button class="edit-button custom-button" (click)="editTask(task)">Editar</button>
+        </div>
+      </div>
     </div>
 
     <!-- Container: Em Progresso -->
-    <div class="status-container" cdkDropList [cdkDropListData]="inProgressTasks" (cdkDropListDropped)="onTaskDropped($event)">
-      <h2>Em Progresso</h2>
-      <div class="task" *ngFor="let task of inProgressTasks" cdkDrag>{{ task.title }}</div> <!-- Alterado para task.title -->
+    <div class="status-container" cdkDropList id="inProgressList"
+         [cdkDropListData]="inProgressTasks"
+         [cdkDropListConnectedTo]="['todoList', 'doneList']"
+         (cdkDropListDropped)="onTaskDropped($event)">
+      <h2>Em Progresso ({{ inProgressTasks.length }}/5)</h2>
+      <div *ngFor="let task of inProgressTasks" class="task-container">
+        <div class="task" cdkDrag (click)="toggleExpand(task.id)">
+          {{ task.title }}
+        </div>
+        <div class="task-details" *ngIf="expandedTaskId === task.id">
+          <p>{{ task.detail }}</p>
+          <button class="edit-button custom-button" (click)="editTask(task)">Editar</button>
+        </div>
+      </div>
     </div>
 
     <!-- Container: Concluído -->
-    <div class="status-container" cdkDropList [cdkDropListData]="doneTasks" (cdkDropListDropped)="onTaskDropped($event)">
+    <div class="status-container" cdkDropList id="doneList"
+         [cdkDropListData]="doneTasks"
+         [cdkDropListConnectedTo]="['todoList', 'inProgressList']"
+         (cdkDropListDropped)="onTaskDropped($event)">
       <h2>Concluído</h2>
-      <div class="task" *ngFor="let task of doneTasks" cdkDrag>{{ task.title }}</div> <!-- Alterado para task.title -->
+      <div class="task-container-scroll">
+        <div *ngFor="let task of doneTasks" class="task-container">
+          <div class="task" cdkDrag (click)="toggleExpand(task.id)">
+            {{ task.title }}
+          </div>
+          <div class="task-details" *ngIf="expandedTaskId === task.id">
+            <p>{{ task.detail }}</p>
+            <button class="edit-button custom-button" (click)="editTask(task)">Editar</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

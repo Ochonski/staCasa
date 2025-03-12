@@ -3,46 +3,116 @@
 /* Estilos para o Breadcrumb */
 .breadcrumb-container {
   background-image: url('/assets/img/header.jpg');
-  background-size: cover; /* Pode ser 'cover', 'contain' ou valores fixos como '100% 200px' */
+  background-size: cover;
   background-position: center;
-  background-repeat: no-repeat; /* Garante que a imagem não seja repetida */
-  height: 300px; /* Ajuste a altura da área do breadcrumb, altere conforme necessário */
-  padding: 20px 0; /* Ajuste o espaço vertical do breadcrumb */
+  background-repeat: no-repeat;
+  height: 300px;
+  padding: 20px 0;
 }
 
+/* Garante que cada item fique em uma linha separada */
+.container {
+  width: 100%;
+  padding: 10px;
+}
+
+.row {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.col-12 {
+  width: 100%;
+}
+
+/* Container de tarefas concluídas com scroll */
+.task-container-scroll {
+  max-height: 300px; /* Altura máxima do contêiner */
+  overflow-y: auto;  /* Habilita o scroll vertical */
+  padding-right: 15px; /* Para compensar a barra de rolagem */
+}
+
+/* Estilo da barra de rolagem (opcional, pode ser ajustado conforme o design) */
+.task-container-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.task-container-scroll::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.task-container-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* Define o tamanho customizável para os inputs */
+.input-field {
+  width: 100%; /* Faz o campo ocupar toda a largura do contêiner */
+  max-width: 500px; /* Limita a largura máxima do campo */
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box; /* Garante que o padding seja incluído no tamanho do campo */
+}
+
+/* Ajustes específicos para o textarea (campo de detalhes) */
+textarea.input-field {
+  height: 90px; /* Define a altura para 3 linhas */
+  resize: vertical; /* Permite que o usuário redimensione verticalmente */
+}
+
+/* Define o tamanho customizável para o botão */
+.custom-button {
+  width: 75%; /* Faz o botão ocupar toda a largura do contêiner */
+  max-width: 100px; /* Limita a largura máxima do botão */
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.custom-button:hover {
+  background-color: #45a049;
+}
+
+/* Breadcrumbs */
 .breadcrumb {
   display: flex;
-  justify-content: center; /* Centraliza os itens */
-  gap: 10px; /* Espaço entre os itens */
+  justify-content: center;
+  gap: 10px;
   list-style: none;
   padding: 0;
   margin: 0;
   position: relative;
-  z-index: 1; /* Garante que o breadcrumb fique acima da imagem */
+  z-index: 1;
 }
 
 .breadcrumb-item {
-  font-size: 18px; /* Ajuste o tamanho do texto dos itens */
+  font-size: 18px;
   margin-right: 5px;
-  font-weight: bold; /* Deixa os itens em negrito */
+  font-weight: bold;
 }
 
 .breadcrumb-item a {
-  text-decoration: none; /* Remove o sublinhado */
-  color: #000; /* Cor preta para o link */
-  font-size: 18px; /* Tamanho do link */
-  font-weight: bold; /* Deixa o link em negrito */
+  text-decoration: none;
+  color: #000;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .breadcrumb-item.active {
-  color: #000; /* Cor preta para o item ativo */
-  font-size: 18px; /* Tamanho do item ativo */
+  color: #000;
+  font-size: 18px;
 }
 
 /* Estilos para o Task Board */
 .task-board {
   display: flex;
-  justify-content: space-between; /* Distribui os containers horizontalmente */
+  justify-content: space-between;
   gap: 20px;
   padding: 20px;
 }
@@ -51,8 +121,8 @@
   background-color: #f0f0f0;
   border-radius: 8px;
   padding: 20px;
-  width: 30%; /* Largura de cada container */
-  min-height: 400px; /* Altura mínima do container */
+  width: 30%;
+  min-height: 400px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
@@ -65,13 +135,14 @@
   margin-bottom: 20px;
 }
 
+/* Estilos para as tasks */
 .task {
   background-color: #ffffff;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 10px;
-  cursor: grab;
+  cursor: pointer;  /* Permite clicar para expandir */  
   transition: background-color 0.3s;
 }
 
@@ -92,19 +163,130 @@
   background-color: #d6d8db;
 }
 
-/* Quando o item estiver sendo arrastado */
 .task[cdkDrag].cdk-drag-preview {
   opacity: 0.8;
 }
 
-.status-container[cdkDropList] {
-  border: 2px dashed #ccc;
+/* Seção de detalhes da task (expandida) */
+.task-detail {
+  padding: 10px;
+  margin-top: 5px;
+  background-color: #f8f8f8;
+  border-top: 1px solid #ddd;
+  font-size: 14px;
+  color: #333;
 }
 
-/* Estilos adicionais para o container de status */
+/* Campo de descrição (textarea) com label */
+.task-detail-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;  /* mesma margem à esquerda que o campo de nova tarefa */
+  margin-top: 10px;
+}
+
+.task-detail-label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.task-detail-input {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical; /* Permite redimensionar verticalmente */
+  max-height: 200px;
+}
+
+/* Campo e botão para adicionar nova tarefa */
+.task-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-left: 20px;  /* mesma margem à esquerda para consistência */
+}
+
+.task-input input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-task-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+}
+
+.add-task-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para o container drop */
 .status-container[cdkDropList] {
-  background-color: #f9f9f9;
   border: 2px dashed #ccc;
-  min-height: 400px;
+  background-color: #f9f9f9;
   padding: 15px;
+  min-height: 400px;
+}
+
+/* Estilos para a área expandida da tarefa */
+.task-details {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.task-details:hover {
+  background-color: #e0e0e0;
+}
+
+.task-details p {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Estilo do botão editar */
+.edit-button,
+.delete-button {
+  font-size: 12px; /* Reduz o tamanho da fonte */
+  padding: 6px 10px; /* Reduz o tamanho do botão */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+.delete-button {
+  background-color: #dc3545; /* Vermelho */
+  color: white;
+  border: none;
+}
+
+.delete-button:hover {
+  background-color: #c82333; /* Vermelho escuro */
 }
