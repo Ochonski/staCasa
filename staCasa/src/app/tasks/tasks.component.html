@@ -36,35 +36,36 @@
          [cdkDropListConnectedTo]="['inProgressList', 'doneList']"
          (cdkDropListDropped)="onTaskDropped($event)">
       <h2>A Fazer ({{ todoTasks.length }}/5)</h2>
-      <div *ngFor="let task of todoTasks" class="task-container">
-        <div class="task" cdkDrag (click)="toggleExpand(task.id)">
+      <div *ngFor="let task of todoTasks" class="task-container" cdkDrag>
+        <div class="task" (click)="toggleExpand(task.id)">
           {{ task.title }}
         </div>
         <div class="task-details" *ngIf="expandedTaskId === task.id">
           <p>{{ task.detail }}</p>
-          <!-- Botão de Editar -->
           <button class="edit-button custom-button" (click)="editTask(task)">Editar</button>
+          <button class="delete-button" (click)="removeTask(task.id)">Deletar</button>
         </div>
       </div>
     </div>
-
+  
     <!-- Container: Em Progresso -->
     <div class="status-container" cdkDropList id="inProgressList"
          [cdkDropListData]="inProgressTasks"
          [cdkDropListConnectedTo]="['todoList', 'doneList']"
          (cdkDropListDropped)="onTaskDropped($event)">
       <h2>Em Progresso ({{ inProgressTasks.length }}/5)</h2>
-      <div *ngFor="let task of inProgressTasks" class="task-container">
-        <div class="task" cdkDrag (click)="toggleExpand(task.id)">
+      <div *ngFor="let task of inProgressTasks" class="task-container" cdkDrag>
+        <div class="task" (click)="toggleExpand(task.id)">
           {{ task.title }}
         </div>
         <div class="task-details" *ngIf="expandedTaskId === task.id">
           <p>{{ task.detail }}</p>
           <button class="edit-button custom-button" (click)="editTask(task)">Editar</button>
+          <button class="delete-button" (click)="removeTask(task.id)">Deletar</button>
         </div>
       </div>
     </div>
-
+  
     <!-- Container: Concluído -->
     <div class="status-container" cdkDropList id="doneList"
          [cdkDropListData]="doneTasks"
@@ -72,16 +73,18 @@
          (cdkDropListDropped)="onTaskDropped($event)">
       <h2>Concluído</h2>
       <div class="task-container-scroll">
-        <div *ngFor="let task of doneTasks" class="task-container">
-          <div class="task" cdkDrag (click)="toggleExpand(task.id)">
+        <div *ngFor="let task of doneTasks" class="task-container" cdkDrag>
+          <div class="task" (click)="toggleExpand(task.id)">
             {{ task.title }}
           </div>
           <div class="task-details" *ngIf="expandedTaskId === task.id">
             <p>{{ task.detail }}</p>
             <button class="edit-button custom-button" (click)="editTask(task)">Editar</button>
+            <button class="delete-button" (click)="removeTask(task.id)">Deletar</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+  
 </div>

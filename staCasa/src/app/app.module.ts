@@ -11,7 +11,8 @@ import { TasksModule } from './tasks/tasks.module'; // Adiciona a importação d
 @NgModule({
   declarations: [
     AppComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+
+interface Task {
+  id: number;
+  title: string;
+  detail: string;
+}
 
 @Component({
   selector: 'app-tasks',
@@ -6,11 +13,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent {
-  // Listas de tarefas
-  todoTasks = [{ id: 1, title: 'Tarefa 1', detail: 'Detalhe 1' }];
-  inProgressTasks = [{ id: 2, title: 'Tarefa 2', detail: 'Detalhe 2' }];
-  doneTasks = [{ id: 3, title: 'Tarefa 3', detail: 'Detalhe 3' }];
-  
+  todoTasks: Task[] = [];
+  inProgressTasks: Task[] = [];
+  doneTasks: Task[] = [];
+
   // Dados da tarefa em edição
   newTaskTitle: string = '';
   newTaskDetail: string = '';
@@ -18,7 +24,9 @@ export class TasksComponent {
 
   // Controle do modo de edição
   isEditMode: boolean = false;
-  taskBeingEdited: any = null;
+  taskBeingEdited: Task | null = null;
+
+  constructor(private cdRef: ChangeDetectorRef) {}
 
   // Função para expandir a exibição de detalhes de uma tarefa
   toggleExpand(taskId: number) {
@@ -26,25 +34,30 @@ export class TasksComponent {
   }
 
   // Função para editar uma tarefa
-  editTask(task: any) {
+  editTask(task: Task) {
     this.newTaskTitle = task.title;
     this.newTaskDetail = task.detail;
     this.isEditMode = true;
     this.taskBeingEdited = task;
   }
 
+  // Função para remover uma tarefa
+  removeTask(taskId: number) {
+    this.todoTasks = this.todoTasks.filter(task => task.id !== taskId);
+    this.inProgressTasks = this.inProgressTasks.filter(task => task.id !== taskId);
+    this.doneTasks = this.doneTasks.filter(task => task.id !== taskId);
+  }
+
   // Função para adicionar ou salvar tarefa
   addTask() {
     if (this.isEditMode) {
-      // Atualiza a tarefa existente
-      this.taskBeingEdited.title = this.newTaskTitle;
-      this.taskBeingEdited.detail = this.newTaskDetail;
-      
-      // Limpa os campos após salvar
+      if (this.taskBeingEdited) {
+        this.taskBeingEdited.title = this.newTaskTitle;
+        this.taskBeingEdited.detail = this.newTaskDetail;
+      }
       this.resetForm();
     } else {
-      // Adiciona nova tarefa
-      const newTask = {
+      const newTask: Task = {
         id: Date.now(),
         title: this.newTaskTitle,
         detail: this.newTaskDetail
@@ -63,7 +76,42 @@ export class TasksComponent {
   }
 
   // Função para mover tarefas entre listas
-  onTaskDropped(event: any) {
-    // Implemente a lógica para mover a tarefa entre as listas
+  onTaskDropped(event: CdkDragDrop<Task[]>) {
+    const previousContainer = event.previousContainer;
+    const currentContainer = event.container;
+
+    // Se as listas de origem e destino são diferentes
+    if (previousContainer !== currentContainer) {
+      // Se a tarefa foi movida para a lista de "A Fazer"
+      if (currentContainer.id === 'todoList') {
+        transferArrayItem(
+          previousContainer.data,
+          currentContainer.data,
+          event.previousIndex,
+          event.currentIndex
+        );
+      }
+      // Se a tarefa foi movida para a lista de "Em Progresso"
+      else if (currentContainer.id === 'inProgressList') {
+        transferArrayItem(
+          previousContainer.data,
+          currentContainer.data,
+          event.previousIndex,
+          event.currentIndex
+        );
+      }
+      // Se a tarefa foi movida para a lista de "Concluídas"
+      else if (currentContainer.id === 'doneList') {
+        transferArrayItem(
+          previousContainer.data,
+          currentContainer.data,
+          event.previousIndex,
+          event.currentIndex
+        );
+      }
+    }
+
+    // Forçar detecção de mudanças para garantir que o Angular re-renderize a UI
+    this.cdRef.detectChanges();
   }
 }
