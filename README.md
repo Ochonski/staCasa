@@ -1,5 +1,5 @@
 1. Clonar o Repositório
-    - git clone <URL_DO_REPOSITORIO>
+    - git clone https://github.com/Ochonski/staCasa
     - cd Stacasa
    
 2. Instalar Dependências
