@@ -5,7 +5,7 @@
 2. Instalar Dependências
 Entre na pasta do backend
     - cd back
-Instale as dependências:
+`Instale as dependências:`
     - npm install
 Volte para a pasta do frontend e instale as dependências:
     - npm install
