@@ -3,7 +3,7 @@
     - cd Stacasa
    
 2. Instalar Dependências
-   - Entre na pasta do backend
+    Entre na pasta do backend
     - cd back
    - Instale as dependências:
     - npm install
