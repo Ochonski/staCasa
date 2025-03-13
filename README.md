@@ -1,5 +1,5 @@
-1. Clonar o Repositório
-- `git clone https://github.com/Ochonski/staCasa /n
+1. Clonar o Repositório<br>
+- `git clone https://github.com/Ochonski/staCasa <br>
 cd Stacasa`
    
 3. Instalar Dependências
